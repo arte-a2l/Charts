@@ -39,4 +39,13 @@ public protocol IBarChartDataSet: IBarLineScatterCandleBubbleChartDataSet
     
     /// array of labels used to describe the different values of the stacked bars
     var stackLabels: [String] { get set }
+
+    var isGradientEnabled: Bool { get set }
+    var gradient: CGGradient { get set }
+    var gradientStyle: Int { get set }
+}
+
+public enum BarChartGradientStyle: Int {
+    case uniformly = 0
+    case individually = 1
 }
