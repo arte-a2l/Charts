@@ -167,7 +167,7 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
 
     open var isGradientEnabled: Bool = false
     open var gradient: CGGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(),
-                                               colors: [UIColor.white.cgColor, UIColor.black.cgColor] as CFArray,
+                                               colors: [NSUIColor.white.cgColor, NSUIColor.black.cgColor] as CFArray,
                                                locations: [0, 1])!
     open var gradientStyle: Int = BarChartGradientStyle.individually.rawValue
 }
