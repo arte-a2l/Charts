@@ -379,8 +379,24 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 context.setFillColor(dataSet.color(atIndex: j).cgColor)
             }
             
-            context.fill(barRect)
-            
+            if dataSet.isGradientEnabled {
+                let startPoint: CGPoint
+                let endPoint: CGPoint
+                switch BarChartGradientStyle(rawValue: dataSet.gradientStyle)!  {
+                case .uniformly:
+                    startPoint = CGPoint(x: 0, y: viewPortHandler.contentBottom)
+                    endPoint = CGPoint(x: 0, y: viewPortHandler.contentTop)
+                case .individually:
+                    startPoint = CGPoint(x: 0, y: barRect.maxY)
+                    endPoint = CGPoint(x: 0, y: barRect.minY)
+                }
+                context.clip(to: barRect)
+                context.drawLinearGradient(dataSet.gradient, start: startPoint, end: endPoint, options: .drawsBeforeStartLocation)
+                context.resetClip()
+            } else {
+                context.fill(barRect)
+            }
+
             if drawBorder
             {
                 context.setStrokeColor(borderColor.cgColor)
