@@ -6,7 +6,9 @@
 //  Copyright © 2017 jc. All rights reserved.
 //
 
-import UIKit
+#if canImport(UIKit)
+    import UIKit
+#endif
 import Charts
 
 class SinusBarChartViewController: DemoBaseViewController {
@@ -32,7 +34,7 @@ class SinusBarChartViewController: DemoBaseViewController {
         
         chartView.delegate = self
         
-        chartView.chartDescription?.enabled = false
+        chartView.chartDescription.enabled = false
         
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = false

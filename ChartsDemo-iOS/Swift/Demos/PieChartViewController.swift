@@ -6,7 +6,9 @@
 //  Copyright © 2017 jc. All rights reserved.
 //
 
-import UIKit
+#if canImport(UIKit)
+    import UIKit
+#endif
 import Charts
 
 class PieChartViewController: DemoBaseViewController {
@@ -28,6 +30,7 @@ class PieChartViewController: DemoBaseViewController {
                         .togglePercent, 
                         .toggleHole,
                         .toggleIcons,
+                        .toggleLabelsMinimumAngle,
                         .animateX,
                         .animateY,
                         .animateXY,
@@ -99,7 +102,7 @@ class PieChartViewController: DemoBaseViewController {
         data.setValueFormatter(DefaultValueFormatter(formatter: pFormatter))
         
         data.setValueFont(.systemFont(ofSize: 11, weight: .light))
-        data.setValueTextColor(.white)
+        data.setValueTextColor(.black)
         
         chartView.data = data
         chartView.highlightValues(nil)
@@ -119,6 +122,10 @@ class PieChartViewController: DemoBaseViewController {
             chartView.drawHoleEnabled = !chartView.drawHoleEnabled
             chartView.setNeedsDisplay()
             
+        case .toggleLabelsMinimumAngle:
+            chartView.sliceTextDrawingThreshold = chartView.sliceTextDrawingThreshold == 0.0 ? 20.0 : 0.0
+            chartView.setNeedsDisplay()
+
         case .drawCenter:
             chartView.drawCenterTextEnabled = !chartView.drawCenterTextEnabled
             chartView.setNeedsDisplay()

@@ -6,7 +6,9 @@
 //  Copyright © 2017 jc. All rights reserved.
 //
 
-import UIKit
+#if canImport(UIKit)
+    import UIKit
+#endif
 import Charts
 
 class NegativeStackedBarChartViewController: DemoBaseViewController {
@@ -43,7 +45,7 @@ class NegativeStackedBarChartViewController: DemoBaseViewController {
 
         chartView.delegate = self
         
-        chartView.chartDescription?.enabled = false
+        chartView.chartDescription.enabled = false
         
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = true
@@ -125,7 +127,7 @@ class NegativeStackedBarChartViewController: DemoBaseViewController {
     }
 }
 
-extension NegativeStackedBarChartViewController: IAxisValueFormatter {
+extension NegativeStackedBarChartViewController: AxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return String(format: "%03.0f-%03.0f", value, value + 10)
     }

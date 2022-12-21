@@ -6,7 +6,9 @@
 //  Copyright © 2017 jc. All rights reserved.
 //
 
-import UIKit
+#if canImport(UIKit)
+    import UIKit
+#endif
 import Charts
 
 class ScatterChartViewController: DemoBaseViewController {
@@ -33,8 +35,8 @@ class ScatterChartViewController: DemoBaseViewController {
                         .toggleData]
         
         chartView.delegate = self
-        
-        chartView.chartDescription?.enabled = false
+
+        chartView.chartDescription.enabled = false
         
         chartView.dragEnabled = true
         chartView.setScaleEnabled(true)
@@ -105,7 +107,7 @@ class ScatterChartViewController: DemoBaseViewController {
         set3.setColor(ChartColorTemplates.colorful()[2])
         set3.scatterShapeSize = 8
         
-        let data = ScatterChartData(dataSets: [set1, set2, set3])
+        let data: ScatterChartData = [set1, set2, set3]
         data.setValueFont(.systemFont(ofSize: 7, weight: .light))
 
         chartView.data = data
